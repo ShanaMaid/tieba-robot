@@ -31,6 +31,7 @@ $arr= array("kw"=>"剑网3",//贴吧名字
 			"content"=>"some words",//内容
 			"tbs"=>$baidu->getTBS()->tbs);
 ```
+
 ### $baidu->getmouse_pwd()  
 获取mouse_pwd  
 
@@ -39,6 +40,10 @@ $arr= array("kw"=>"剑网3",//贴吧名字
 
 ### $baidu->setCookie($cookie)  
 修改cookie  
+
+[如何获取这些数据，如fid！点击](https://github.com/ShanaMaid/baidu-tieba-api/blob/master/content/reply.md)      
+  
+
 
 
 ## Spider.php
