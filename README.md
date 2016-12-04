@@ -25,15 +25,20 @@ $baidu->getTBS()->is_login 1               1代表cookie正确，用户登录成
 
 ```
 $arr= array("kw"=>"剑网3",//贴吧名字
-			"fid"=>"1185508",//贴吧id
+			"fid"=>$baidu->getfid("剑网3"),//贴吧id
 			"tid"=>"4886120962",//帖子id eg: http://tieba.baidu.com/p/4886120962     4886120962
-			"mouse_pwd"=>"36,34,33,58,35,35,46,46,31,39,58,38,58,39,58,38,58,39,58,38,58,39,58,38,58,39,58,38,31,39,37,32,47,34,36,31,39,47,36,38,58,39,38,46,38,",//mouse_pwd
+			"mouse_pwd"=>$baidu->getmouse_pwd(),//mouse_pwd
 			"content"=>"some words",//内容
 			"tbs"=>$baidu->getTBS()->tbs);
 ```
+### $baidu->getmouse_pwd()  
+获取mouse_pwd  
 
-### $baidu->setCookie($cookie)
-修改cookie
+### $baidu->getfid($name)  $name 贴吧名字
+获取贴吧fid  
+
+### $baidu->setCookie($cookie)  
+修改cookie  
 
 
 ## Spider.php

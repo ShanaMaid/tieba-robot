@@ -31,6 +31,21 @@
 			return $result;
 		}
 
+		public function getmouse_pwd(){
+			$arr = array();
+			for ($i=0; $i < 45; $i++) 
+				$arr[$i] = rand(30,60).",";
+			return join("",$arr);
+		}
+
+		public function getfid($name){
+			$handle =fopen('http://tieba.baidu.com/f?kw='.$name, "r");
+			$content = stream_get_contents($handle,-1,-1);
+			preg_match("/PageData.forum = {(.|\n)*?}/", $content,$fid);
+			preg_match("/[0-9]{7}/", $fid[0],$fid);
+			return $fid[0];
+		}
+
 		public function setCookie($cookie)
 		{
 			$this->cookie = $cookie;

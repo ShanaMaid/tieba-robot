@@ -20,9 +20,9 @@
 			if (array_search($id[$i], $visited_id,false)) 
 			 	continue;
 			$content= array("kw"=>"剑网3",//贴吧名字
-						"fid"=>"1185508",//贴吧id
+						"fid"=>$baidu->getfid("剑网3"),//贴吧id
 						"tid"=>"$id[$i]",
-						"mouse_pwd"=>"36,34,33,58,35,35,46,46,31,39,58,38,58,39,58,38,58,39,58,38,58,39,58,38,58,39,58,38,31,39,37,32,47,34,36,31,39,47,36,38,58,39,38,46,38,",//mouse_pwd
+						"mouse_pwd"=>$baidu->getmouse_pwd(),//mouse_pwd
 						"content"=>$words[rand(0,$words_num-1)]."[br][br]————————来自伟大的PHP，PHP是世界上最好的语言！",//内容
 						"tbs"=>$baidu->getTBS()->tbs);
 			$return = $baidu->reply($content);
