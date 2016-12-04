@@ -1,4 +1,4 @@
-# baidu-robot
+#  tieba-robot
 百度贴吧机器人！自动回复帖子
 
 ## 说明
@@ -45,3 +45,5 @@ $content = $spider->getPageContents(1); //获取第一页内容  获取失败返
 
 ### $spider->getCardId($content);        
 $id = $spider->getCardId($spider->getPageContents(1)); //获取id 获取失败返回-1 成功返回id数组!            
+
+
