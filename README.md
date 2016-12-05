@@ -8,6 +8,19 @@ lib/xxx.php 函数库
 err_code.md 记录一些返回值的错误信息             
 
 example.php 一个例子，填入你的百度账号的cookies后运行会发帖！  
+```
+<?php
+	require('lib/Baidu.php');
+
+	$baidu = new  Baidu("");//cookie
+	$content= array("name"=>"剑网3",//贴吧名字
+					"tid"=>"4887240082",
+					"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
+					);
+	$baidu->reply($content);
+
+?>
+```
 
 ## Baidu.php
 
@@ -24,12 +37,10 @@ $baidu->getTBS()->is_login 1               1代表cookie正确，用户登录成
 ###  $baidu->reply($arr) 回复帖子
 
 ```
-$arr= array("kw"=>"剑网3",//贴吧名字
-			"fid"=>$baidu->getfid("剑网3"),//贴吧id
-			"tid"=>"4886120962",//帖子id eg: http://tieba.baidu.com/p/4886120962     4886120962
-			"mouse_pwd"=>$baidu->getmouse_pwd(),//mouse_pwd
-			"content"=>"some words",//内容
-			"tbs"=>$baidu->getTBS()->tbs);
+$content= array("name"=>"剑网3",//贴吧名字
+				"tid"=>"4887240082",//帖子id
+				"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
+				);
 ```
 
 ### $baidu->getmouse_pwd()  

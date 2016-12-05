@@ -1,43 +1,11 @@
 <?php
-	date_default_timezone_set("Asia/Shanghai");
-	require('lib/Spider.php');
 	require('lib/Baidu.php');
 
-	$file_id = fopen("logs/visited.logs", "a+");
-	$visited_id = explode("\r\n",file_get_contents("logs/visited.logs"));
-	
-	$words = array();
-	$words_num = sizeof(scandir("words/"))-2;
-	for ($i=0; $i < $words_num; $i++) { 
-		$words[$i] = str_replace("\r\n", "[br]", file_get_contents("words/".($i+1).".txt")) ;
-	}
-	$spider = new Spider("剑网3");//贴吧名字
 	$baidu = new  Baidu("");//cookie
-
-	while (true) {
-		$id = $spider->getCardId($spider->getPageContents(1));
-		for ($i=1; $i < sizeof($id); $i++) {
-			if (array_search($id[$i], $visited_id,false)) 
-			 	continue;
-			$content= array("kw"=>"剑网3",//贴吧名字
-						"fid"=>$baidu->getfid("剑网3"),//贴吧id
-						"tid"=>"$id[$i]",
-						"mouse_pwd"=>$baidu->getmouse_pwd(),//mouse_pwd
-						"content"=>$words[rand(0,$words_num-1)]."[br][br]————————来自伟大的PHP，PHP是世界上最好的语言！",//内容
-						"tbs"=>$baidu->getTBS()->tbs);
-			$return = $baidu->reply($content);
-			if ($return->err_code == 0) {
-				echo "$id[$i] success! \r\n";
-				$visited_id[sizeof($visited_id)] = $id[$i];
-				fwrite($file_id, "$id[$i]\r\n");
-			}
-			else
-				print_r($return);
-
-			sleep(10);
-		}
-	}
-	
-
+	$content= array("name"=>"剑网3",//贴吧名字
+					"tid"=>"4887240082",
+					"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
+					);
+	$baidu->reply($content);
 
 ?>

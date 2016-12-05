@@ -19,7 +19,7 @@
 
 		public function reply($arr){
 			$ch = curl_init("http://tieba.baidu.com/f/commit/post/add");
-			$data = "ie=utf-8&files=[]&__type__=reply&mouse_pwd_isclick=0&vcode_md5=&kw=".$arr["kw"]."&fid=".$arr["fid"]."&tid=".$arr["tid"]."&rich_text=1&floor_num=0&mouse_pwd_t=".time()."&mouse_pwd=".$arr["mouse_pwd"].time()."0&content=".$arr["content"]."&tbs=".$arr["tbs"];
+			$data = "ie=utf-8&files=[]&__type__=reply&mouse_pwd_isclick=0&vcode_md5=&kw=".$arr["name"]."&fid=".$this->getfid($arr["name"])."&tid=".$arr["tid"]."&rich_text=1&floor_num=0&mouse_pwd_t=".time()."&mouse_pwd=".$this->getmouse_pwd().time()."0&content=".$arr["content"]."&tbs=".$this->getTBS()->tbs;
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  
 			curl_setopt($ch,CURLOPT_HEADER,true);  
 			curl_setopt($ch,CURLOPT_COOKIE,$this->cookie); 
