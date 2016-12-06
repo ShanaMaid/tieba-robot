@@ -12,8 +12,8 @@ example.php 一个例子，填入你的百度账号的cookies后运行会发帖�
 <?php
 	require('lib/Baidu.php');
 
-	$baidu = new  Baidu("");//cookie
-	$content= array("name"=>"剑网3",//贴吧名字
+	$baidu = new  Baidu($cookie,$name);//账户cookie，贴吧名字
+	$content= array(
 					"tid"=>"4887240082",
 					"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
 					);
@@ -37,7 +37,7 @@ $baidu->getTBS()->is_login 1               1代表cookie正确，用户登录成
 ###  $baidu->reply($arr) 回复帖子
 
 ```
-$content= array("name"=>"剑网3",//贴吧名字
+$content= array(
 				"tid"=>"4887240082",//帖子id
 				"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
 				);
@@ -55,16 +55,10 @@ $content= array("name"=>"剑网3",//贴吧名字
 [如何获取这些数据，如fid！点击](https://github.com/ShanaMaid/baidu-tieba-api/blob/master/content/reply.md)      
   
 
-
-
-## Spider.php
-### Constructor
-$spider = new Spider("剑网3");//贴吧名字    
-
-### $spider->getPageContents($page)                
+### $baidu->getPageContents($page)                
 $content = $spider->getPageContents(1); //获取第一页内容  获取失败返回-1 成功返回str!   
 
-### $spider->getCardId($content);        
-$id = $spider->getCardId($spider->getPageContents(1)); //获取id 获取失败返回-1 成功返回id数组!            
+### $baidu->getCardId($page);        
+$id = $spider->getCardId(1); //获取第一页帖子id 获取失败返回-1 成功返回id数组!            
 
 
