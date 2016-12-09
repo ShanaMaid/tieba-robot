@@ -1,26 +1,13 @@
 #  tieba-robot
 百度贴吧机器人！自动回复帖子
 
-## 说明
-logs/visited.logs 用于存放已经回复过的帖子，即回复过的帖子不会再回复      
-words/xxx.txt   用于存放回复的句子，每次回复随机抽取一个              
-lib/xxx.php 函数库     
+## 说明               
+lib/xxx.php 函数库
+example/  一些例子      
 err_code.md 记录一些返回值的错误信息             
 
-example.php 一个例子，填入你的百度账号的cookies后运行会发帖！  
-```
-<?php
-	require('lib/Baidu.php');
+ 
 
-	$baidu = new  Baidu($cookie,$name);//账户cookie，贴吧名字
-	$content= array(
-					"tid"=>"4887240082",
-					"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
-					);
-	$baidu->reply($content);
-
-?>
-```
 
 ## Baidu.php
 
@@ -39,6 +26,16 @@ $baidu->getTBS()->is_login 1               1代表cookie正确，用户登录成
 ```
 $content= array(
 				"tid"=>"4887240082",//帖子id
+				"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
+				);
+```
+* #### Warning!帖子必须是对应贴吧的帖子才能发帖成功！  
+
+###  $baidu->post($arr) 回复帖子
+
+```
+$content= array(
+				"title"=>"PHP强！无敌！",//帖子题目
 				"content"=>"伟大的PHP，PHP是世界上最好的语言！"//内容
 				);
 ```

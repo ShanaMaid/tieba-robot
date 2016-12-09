@@ -11,15 +11,7 @@
 			$this->fid = $this->getfid();
 		}
 
-		public function getTBS(){
-			$ch = curl_init("http://tieba.baidu.com/dc/common/tbs");
-			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  
-			curl_setopt($ch,CURLOPT_COOKIE,$this->cookie); 
-			$content = curl_exec($ch); 
-			preg_match("/{.*?}/", $content,$result);
-			$result = json_decode($result[0]);
-			return $result;
-		}
+		
 
 		public function reply($arr){
 			$ch = curl_init("http://tieba.baidu.com/f/commit/post/add");
@@ -31,6 +23,30 @@
 		 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 			$content = curl_exec($ch);
 			preg_match("/{.*}/", $content,$result);
+			$result = json_decode($result[0]);
+			return $result;
+		}
+
+		public function post($arr){
+			$ch = curl_init("http://tieba.baidu.com/f/commit/thread/add");
+			$data = "ie=utf-8&prefix=&files=[]&__type__=thread&mouse_pwd_isclick=0&vcode_md5=&kw=".$this->name."&fid=".$this->fid."&tid=0&rich_text=1&floor_num=0&mouse_pwd_t=".time()."&mouse_pwd=".$this->getmouse_pwd().time()."0&title=".$arr["title"]."&content=".$arr["content"]."&tbs=".$this->getTBS()->tbs;
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  
+			curl_setopt($ch,CURLOPT_HEADER,true);  
+			curl_setopt($ch,CURLOPT_COOKIE,$this->cookie); 
+			curl_setopt($ch, CURLOPT_POST, 1);
+		 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			$content = curl_exec($ch);
+			preg_match("/{.*}/", $content,$result);
+			$result = json_decode($result[0]);
+			return $result;
+		}
+
+		public function getTBS(){
+			$ch = curl_init("http://tieba.baidu.com/dc/common/tbs");
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  
+			curl_setopt($ch,CURLOPT_COOKIE,$this->cookie); 
+			$content = curl_exec($ch); 
+			preg_match("/{.*?}/", $content,$result);
 			$result = json_decode($result[0]);
 			return $result;
 		}
