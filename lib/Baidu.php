@@ -11,7 +11,19 @@
 			$this->fid = $this->getfid();
 		}
 
-		
+		public function sign(){
+			$ch = curl_init("http://tieba.baidu.com/sign/add");
+			$data = "ie=utf-8&kw=".$this->name."&tbs=".$this->getTBS()->tbs;
+			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);  
+			curl_setopt($ch,CURLOPT_HEADER,true);  
+			curl_setopt($ch,CURLOPT_COOKIE,$this->cookie); 
+			curl_setopt($ch, CURLOPT_POST, 1);
+		 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			$content = curl_exec($ch);
+			preg_match("/{.*}/", $content,$result);
+			$result = json_decode($result[0]);
+			return $result;
+		}
 
 		public function reply($arr){
 			$ch = curl_init("http://tieba.baidu.com/f/commit/post/add");

@@ -21,6 +21,10 @@ $baidu = new Baidu($cookie);
 $baidu->getTBS()->tbs  c361372910cd57ef1478325339   
 $baidu->getTBS()->is_login 1               1代表cookie正确，用户登录成功！       
 
+###  $baidu->sign() 签到
+$baidu->sign();
+
+
 ###  $baidu->reply($arr) 回复帖子
 
 ```
@@ -31,7 +35,7 @@ $content= array(
 ```
 * #### Warning!帖子必须是对应贴吧的帖子才能发帖成功！  
 
-###  $baidu->post($arr) 回复帖子
+###  $baidu->post($arr) 发帖子
 
 ```
 $content= array(
